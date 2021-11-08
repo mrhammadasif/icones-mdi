@@ -26,6 +26,7 @@ importers:
       fuse.js: ^6.4.6
       hotkeys-js: ^3.8.7
       jszip: ^3.7.1
+      lodash-es: ^4.17.21
       pnpm: ^6.15.0
       svg-packer: ^0.0.3
       typescript: ^4.4.3
@@ -43,11 +44,12 @@ importers:
       '@antfu/utils': 0.3.0
       '@iconify/iconify': 2.0.4
       '@vueuse/core': 6.3.3_vue@3.2.11
-      copy-text-to-clipboard: github.com/afzalsayed96/copy-text-to-clipboard/8b475341729dad85ccd053ac653d04797738e6ad
+      copy-text-to-clipboard: github.com/afzalsayed96/copy-text-to-clipboard/9603f219a179c250f2d2cd86244d73657e159e26
       dexie: 3.0.3
       file-saver: 2.0.5
       fuse.js: 6.4.6
       hotkeys-js: 3.8.7
+      lodash-es: 4.17.21
       vue: 3.2.11
       vue-chemistry: 0.2.2_vue@3.2.11
       vue-router: 4.0.11_vue@3.2.11
@@ -2751,7 +2753,7 @@ packages:
   /@vueuse/shared/4.0.4_vue@3.2.11:
     resolution: {integrity: sha512-jO2al+zPEdPDZoP0tRq7PxOPrh8jFCY0qcdUauXqvBPT7KkerQ9fFu7/5JWpF1CfxJv2OloJZtIUkHX00vEuyQ==}
     dependencies:
-      vue-demi: 0.11.4_vue@3.2.11
+      vue-demi: 0.12.1_vue@3.2.11
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -7320,6 +7322,10 @@ packages:
     dependencies:
       p-locate: 4.1.0
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
+
   /lodash.camelcase/4.3.0:
     resolution: {integrity: sha1-soqmKIorn8ZRA1x3EfZathkDMaY=}
     dev: true
@@ -10676,7 +10682,7 @@ packages:
     resolution: {integrity: sha512-hemcHzSb/RKqxJudn/m0Afq1awNjkaKspezFFlYXXzH7kKvchvqYq6SedhKNgDl/4AY1k1vcHfNcKVKgFzZXCw==}
     dependencies:
       '@vueuse/shared': 4.0.4_vue@3.2.11
-      vue-demi: 0.11.4_vue@3.2.11
+      vue-demi: 0.12.1_vue@3.2.11
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -10684,6 +10690,21 @@ packages:
 
   /vue-demi/0.11.4_vue@3.2.11:
     resolution: {integrity: sha512-/3xFwzSykLW2HiiLie43a+FFgNOcokbBJ+fzvFXd0r2T8MYohqvphUyDQ8lbAwzQ3Dlcrb1c9ykifGkhSIAk6A==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.2.11
+    dev: false
+
+  /vue-demi/0.12.1_vue@3.2.11:
+    resolution: {integrity: sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true
@@ -11336,9 +11357,9 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/afzalsayed96/copy-text-to-clipboard/8b475341729dad85ccd053ac653d04797738e6ad:
-    resolution: {tarball: https://codeload.github.com/afzalsayed96/copy-text-to-clipboard/tar.gz/8b475341729dad85ccd053ac653d04797738e6ad}
+  github.com/afzalsayed96/copy-text-to-clipboard/9603f219a179c250f2d2cd86244d73657e159e26:
+    resolution: {tarball: https://codeload.github.com/afzalsayed96/copy-text-to-clipboard/tar.gz/9603f219a179c250f2d2cd86244d73657e159e26}
     name: copy-text-to-clipboard
-    version: 2.2.0
-    engines: {node: '>=6'}
+    version: 3.0.1
+    engines: {node: '>=12'}
     dev: false

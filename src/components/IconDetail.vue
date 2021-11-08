@@ -1,7 +1,11 @@
 <template>
   <div class="p-2 flex flex-col md:flex-row md:text-left relative">
-    <IconButton class="absolute top-0 right-0 p-3 text-2xl flex-none leading-none" icon="carbon:close" @click="$emit('close')" />
-    <div :style="{color: previewColor}">
+    <IconButton
+      class="absolute top-0 right-0 p-3 text-2xl flex-none leading-none"
+      icon="carbon:close"
+      @click="$emit('close')"
+    />
+    <div :style="{ color: previewColor }">
       <ColorPicker v-model:value="previewColor" class="inline-block">
         <Icon class="p-4 text-8xl" :icon="icon" />
       </ColorPicker>
@@ -15,7 +19,10 @@
       </button>
       <p class="flex text-gray-700 font-mono dark:text-dark-900">
         {{ icon }}
-        <IconButton icon="carbon:copy" class="ml-2" @click="copy('id')" />
+        <span class="flex ml-10">
+          <IconButton icon="carbon:copy" class="ml-2" @click="copy('id')" />
+          <IconButton icon="mdi:heart" class="ml-2" @click="copy('comp')" />
+        </span>
       </p>
 
       <p v-if="showCollection && collection" class="flex mb-1 text-gray-500 text-sm">
@@ -31,20 +38,15 @@
 
       <div>
         <div
-          class="
-            inline-block border border-gray-200 my-2 mr-2 font-sans pl-2 pr-3 py-1 rounded-full text-sm cursor-pointer hover:bg-gray-50
-            dark:border-dark-200 dark:hover:bg-dark-200
-          "
+          class="inline-block border border-gray-200 my-2 mr-2 font-sans pl-2 pr-3 py-1 rounded-full text-sm cursor-pointer hover:bg-gray-50 dark:border-dark-200 dark:hover:bg-dark-200"
           :class="inBag(icon) ? 'text-primary' : 'text-gray-500'"
           @click="toggleBag(icon)"
         >
           <template v-if="inBag(icon)">
-            <Icon class="inline-block text-lg align-middle" icon="carbon:shopping-bag" />
-            in bag
+            <Icon class="inline-block text-lg align-middle" icon="carbon:shopping-bag" />in bag
           </template>
           <template v-else>
-            <Icon class="inline-block text-lg align-middle" icon="carbon:add" />
-            add to bag
+            <Icon class="inline-block text-lg align-middle" icon="carbon:add" />add to bag
           </template>
         </div>
 
@@ -54,8 +56,7 @@
           :class="selectingMode ? 'text-primary' : 'text-gray-500'"
           @click="toggleSelectingMode"
         >
-          <Icon class="inline-block text-lg align-middle" icon="carbon:list-checked" />
-          multiple select
+          <Icon class="inline-block text-lg align-middle" icon="carbon:list-checked" />multiple select
         </div>
       </div>
 
@@ -88,7 +89,8 @@
             React
           </button>
           <button class="btn small mr-1 mb-1 opacity-75" @click="copy('tsx')">
-            React<sup class="opacity-50 -mr-1">TS</sup>
+            React
+            <sup class="opacity-50 -mr-1">TS</sup>
           </button>
         </div>
         <div class="mr-4">
@@ -116,7 +118,8 @@
             React
           </button>
           <button class="btn small mr-1 mb-1 opacity-75" @click="download('tsx')">
-            React<sup class="opacity-50 -mr-1">TS</sup>
+            React
+            <sup class="opacity-50 -mr-1">TS</sup>
           </button>
         </div>
       </div>
@@ -131,6 +134,7 @@
 <script setup lang='ts'>
 import copyText from 'copy-text-to-clipboard'
 import { ref, computed } from 'vue'
+import { camelCase } from 'lodash-es'
 import { getIconSnippet, toComponentName } from '../utils/icons'
 import { collections } from '../data'
 import { selectingMode, previewColor, toggleBag, inBag, showHelp } from '../store'
@@ -151,11 +155,12 @@ const props = defineProps({
 const copied = ref(false)
 
 const copy = async(type: string) => {
-  const text = await getIconSnippet(props.icon, type, true)
+  const text = await getIconSnippet(props.icon, type === 'comp' ? 'id' : type, true)
   if (!text)
     return
 
-  copied.value = copyText(text)
+  copied.value = type === 'comp' ? copyText(camelCase(text.replace(':', '-'))) : copyText(text)
+
   setTimeout(() => {
     copied.value = false
   }, 2000)

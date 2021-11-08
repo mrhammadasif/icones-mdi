@@ -3,5 +3,12 @@
   "cSpell.words": [
     "icones"
   ],
-  "i18n-ally.enabledFramework": []
+  "i18n-ally.enabledFramework": [],
+  "workbench.colorCustomizations": {
+    "tab.activeBackground": "#06063b",
+    "tab.activeForeground": "#fff",
+    "activityBar.background": "#312949",
+    "titleBar.activeBackground": "#453966",
+    "titleBar.activeForeground": "#FAFAFC"
+  }
 }
